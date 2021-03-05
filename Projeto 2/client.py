@@ -32,7 +32,7 @@ def main():
         start_time = time()
         
         com1.sendData(header)
-        com1.sendData(np.asarray(txBuffer))
+        com1.sendData(txBuffer)
         time_to_send=time() - start_time
         time, unit=process_time(time_to_send, 'ms')
         #print("Enviou: {}" .format(txBuffer)) 
