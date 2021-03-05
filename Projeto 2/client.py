@@ -6,9 +6,9 @@ from tkinter.filedialog import askopenfilename
 import os
 
 #imageR = imageInput()
-#Tk().withdraw()
-#imageR=askopenfilename(initialdir=os.getcwd(), title="Select the image you wish to send", filetypes=[("Image Files", ".png"), ("Image Files", ".jpg"), ("Image Files", ".jpeg")])
-imageR='./img/transmission.png'
+Tk().withdraw()
+imageR=askopenfilename(initialdir=os.getcwd(), title="Select the image you wish to send", filetypes=[("Image Files", ".png"), ("Image Files", ".jpg"), ("Image Files", ".jpeg")])
+#imageR='./img/transmission.png'
     
 header_size=4
 
@@ -35,20 +35,16 @@ def main():
         com1.sendData(txBuffer)
         time_to_send=time() - start_time
         time, unit=process_time(time_to_send, 'ms')
-        #print("Enviou: {}" .format(txBuffer)) 
-       
-        #txSize = com1.tx.getStatus()
-        #print("Atualizou o status")
         
         print("-------------------------\nMessage sent.\n-------------------------")
         print(f"Program took {time} {unit} to send.")
         print(f"Message sent at {size/time_to_send} bytes/s.")
         
         rxBufferClient, nRxClient = com2.getData(4)
-        answer= int.from_bytes(rxBufferClient, 'big')
+        answer=int.from_bytes(rxBufferClient, 'big')
         
         if size==answer:
-            print(f"Communication successful. There was no loss of data.")
+            print("Communication successful. There was no loss of data.")
         else:
             print(f"There was a communication error. There were {size-answer} bytes lost.")
             
@@ -60,6 +56,5 @@ def main():
         com1.disable()
         
 
-    #so roda o main quando for executado do terminal ... se for chamado dentro de outro modulo nao roda
 if __name__ == "__main__":
     main()
