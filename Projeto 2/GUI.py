@@ -16,7 +16,7 @@ def imageInput():
     window.geometry('350x200')
     #lbl = Label(window, text=time, font=("Arial Bold", 50))
     messagebox.showinfo(title, time)
-    #lbl.grid(column=0, row'''=0)
+    #lbl.grid(column=0, row=0)
     window.mainloop()
     
-#timeWindow('send', 0.05)
+#timeWindow('send', 0.05)'''

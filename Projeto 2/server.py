@@ -1,9 +1,12 @@
 from enlace import *
 from time import time
 import numpy as np
-from client import process_time
 
 imageW = "./img/transmission_receive.png"
+
+def process_time(time, unit):
+    units={"ms":1e3, "μs": 1e6, "ns":1e9}
+    return units.get(unit)*time, unit
 
 def main():
     try:
@@ -28,9 +31,11 @@ def main():
         with open(imageW, 'wb') as f:
             f.write(rxBuffer)
            
-        print("-------------------------\nMessage sent.\n-------------------------")
+        print("-------------------------\nMessage received.\n-------------------------")
         print(f"Program took {time} {unit} to receive.")
         print(f"Message received at {size/time_to_receive} bytes/s.")
+        
+        com2.disable()
         
     except Exception as erro:
         print("ops! :-\\")

@@ -1,5 +1,6 @@
 from enlace import *
 from time import time
+#from datetime import datetime
 import numpy as np
 from tkinter import Tk, messagebox
 from tkinter.filedialog import askopenfilename
@@ -33,14 +34,14 @@ def main():
         
         com1.sendData(header)
         com1.sendData(txBuffer)
-        time_to_send=time() - start_time
+        time_to_send=time()() - start_time
         time, unit=process_time(time_to_send, 'ms')
         
         print("-------------------------\nMessage sent.\n-------------------------")
         print(f"Program took {time} {unit} to send.")
         print(f"Message sent at {size/time_to_send} bytes/s.")
         
-        rxBufferClient, nRxClient = com2.getData(4)
+        rxBufferClient, nRxClient = com1.getData(4)
         answer=int.from_bytes(rxBufferClient, 'big')
         
         if size==answer:
