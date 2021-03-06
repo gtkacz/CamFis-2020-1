@@ -35,10 +35,10 @@ def main():
         com1.sendData(header)
         com1.sendData(txBuffer)
         time_to_send=time()() - start_time
-        time, unit=process_time(time_to_send, 'ms')
+        time_s, unit=process_time(time_to_send, 'ms')
         
         print("-------------------------\nMessage sent.\n-------------------------")
-        print(f"Program took {time} {unit} to send.")
+        print(f"Program took {time_s} {unit} to send.")
         print(f"Message sent at {size/time_to_send} bytes/s.")
         
         rxBufferClient, nRxClient = com1.getData(4)

@@ -23,7 +23,7 @@ def main():
         rxBuffer, nRx = com2.getData(img_size)
         
         time_to_receive=time() - start_time
-        time, unit=process_time(time_to_receive, 'ms')
+        time_r, unit=process_time(time_to_receive, 'ms')
         
         answer=nRx.to_bytes(4, 'big')
         com2.sendData(answer)
@@ -32,7 +32,7 @@ def main():
             f.write(rxBuffer)
            
         print("-------------------------\nMessage received.\n-------------------------")
-        print(f"Program took {time} {unit} to receive.")
+        print(f"Program took {time_r} {unit} to receive.")
         print(f"Message received at {size/time_to_receive} bytes/s.")
         
         com2.disable()
