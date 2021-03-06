@@ -22,18 +22,22 @@ def main():
         door="COM5"
         com1 = enlace(door)
         com1.enable()
-        #print(f'Abriu a porta {door}')
+        print(f'Abriu a porta {door}.')
         
         with open(imageR, 'rb') as f:
             txBuffer = f.read()
+            print("Abriu a imagem.")
             
         size=len(txBuffer)
         header=size.to_bytes(header_size, 'big')
+        print("Montou o header")
         
         start_time = time()
         
         com1.sendData(header)
+        print("Mandou o header.")
         com1.sendData(txBuffer)
+        print("Mandou a imagem.")
         time_to_send=time() - start_time
         time_s, unit=process_time(time_to_send, 'ms')
         

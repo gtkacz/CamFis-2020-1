@@ -12,21 +12,24 @@ def main():
     try:
         door="COM6"
         com2 = enlace(door)
-        #print(f'Abriu a porta {door}')
-
         com2.enable()
+        print(f'Abriu a porta {door}')
+
         
         start_time = time()
 
         img_size_b, nRx = com2.getData(4)
+        print("Recebeu o header.")
         img_size=int.from_bytes(img_size_b, 'big')
         rxBuffer, nRx = com2.getData(img_size)
+        print("Recebeu a imagem.")
         
         time_to_receive=time() - start_time
         time_r, unit=process_time(time_to_receive, 'ms')
         
         answer=nRx.to_bytes(4, 'big')
         com2.sendData(answer)
+        print("Mandou de volta o tamanho recebido.")
         
         with open(imageW, 'wb') as f:
             f.write(rxBuffer)
