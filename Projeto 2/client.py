@@ -34,7 +34,7 @@ def main():
         
         com1.sendData(header)
         com1.sendData(txBuffer)
-        time_to_send=time()() - start_time
+        time_to_send=time() - start_time
         time_s, unit=process_time(time_to_send, 'ms')
         
         print("-------------------------\nMessage sent.\n-------------------------")
