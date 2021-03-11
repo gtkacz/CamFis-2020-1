@@ -14,7 +14,11 @@ class Transmission():
         self.OVERHEAD=(self.HEAD_SIZE + self.MAX_PAYLOAD_SIZE + self.EOP_SIZE)/self.MAX_PAYLOAD_SIZE
     
     def __build_head__(self, transmission_type):
-        pass
+        self.transmission_types = {
+            'HANDSHAKE':1,
+            '':2,
+        }
+        self.transmission_type = self.transmission_types.get(transmission_type)
     
     def __EOP__(self):
         self.EOP_VALUE=2001
@@ -26,6 +30,7 @@ class Transmission():
     def __build_package__(self, data):
         if data!=self.HANDSHAKE_VALUE:
             self.payload=self.__build_payload__(data)
+            
         self.head=self.__build_head__(data)
         
         
@@ -43,11 +48,11 @@ class Transmission():
     def __receive_EOP__(self, datagram):
         pass
     
-    def receive_all(self, datagram):
+    def receive_all(self, data):
         pass
     
     def send_handshake(self):
-        self.HANDSHAKE_VALUE=0.to_bytes(4, 'big')
+        self.HANDSHAKE_VALUE=(0).to_bytes(4, 'big')
         pass
     
     def receive_handshake(self):
