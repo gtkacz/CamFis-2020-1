@@ -16,9 +16,13 @@ class Transmission():
     def __build_head__(self, transmission_type):
         self.transmission_types = {
             'HANDSHAKE':1,
-            '':2,
+            'NORMAL':2,
+            'LAST':3,
+            'SUCCESS':4,
+            'FAILURE':5,
         }
-        self.transmission_type = self.transmission_types.get(transmission_type)
+        
+        self.transmission_type = self.transmission_types.get(transmission_type.upper())
     
     def __EOP__(self):
         self.EOP_VALUE=2001
