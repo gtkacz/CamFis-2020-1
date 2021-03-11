@@ -14,7 +14,7 @@ def main():
         door="COM6"
         com2 = enlace(door)
         com2.enable()
-        print(f'Abriu a porta {door}')
+        #print(f'Abriu a porta {door}')
         
         os.system('py client.py')
         
