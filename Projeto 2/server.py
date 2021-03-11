@@ -2,11 +2,11 @@ from enlace import *
 from time import time
 import numpy as np
 
-imageW = "./img/transmission_receive.png"
+imageW = "./img/transmission_received.png"
 
 def process_time(time, unit):
     units={"ms":1e3, "μs": 1e6, "ns":1e9}
-    return units.get(unit)*time, unit
+    return round(units.get(unit)*time,3), unit
 
 def main():
     try:
@@ -15,10 +15,9 @@ def main():
         com2.enable()
         print(f'Abriu a porta {door}')
 
-        
-        start_time = time()
 
         img_size_b, nRx = com2.getData(4)
+        start_time = time()
         print("Recebeu o header.")
         img_size=int.from_bytes(img_size_b, 'big')
         rxBuffer, nRx = com2.getData(img_size)
@@ -36,7 +35,7 @@ def main():
            
         print("-------------------------\nMessage received.\n-------------------------")
         print(f"Program took {time_r} {unit} to receive.")
-        print(f"Message received at {img_size_b/time_to_receive} bytes/s.")
+        print(f"Message received at {round((img_size/time_to_receive), 3)} bytes/s.")
         
         com2.disable()
         

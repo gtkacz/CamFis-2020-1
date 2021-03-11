@@ -15,7 +15,7 @@ header_size=4
 
 def process_time(time, unit):
     units={"ms":1e3, "μs": 1e6, "ns":1e9}
-    return round(units.get(unit)*time, unit, 3)
+    return round(units.get(unit)*time,3), unit
 
 def main():
     try:
@@ -43,7 +43,7 @@ def main():
         
         print("-------------------------\nMessage sent.\n-------------------------")
         print(f"Program took {time_s} {unit} to send.")
-        print(f"Message sent at {size/time_to_send} bytes/s.")
+        print(f"Message sent at {round((size/time_to_send), 3)} bytes/s.")
         
         rxBufferClient, nRxClient = com1.getData(4)
         answer=int.from_bytes(rxBufferClient, 'big')
