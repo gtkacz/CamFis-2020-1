@@ -30,28 +30,27 @@ def main():
             
         size=len(txBuffer)
         header=size.to_bytes(header_size, 'big')
-        print(f"Montou o header:/n {header}")
+        print(f"Montou o header: {header}")
         
         start_time = time()
         
         com1.sendData(header)
         print("Mandou o header.")
         com1.sendData(txBuffer)
-        print("Mandou a imagem.")
         time_to_send=time() - start_time
         time_s, unit=process_time(time_to_send, 'ms')
         
-        print("-------------------------\nMessage sent.\n-------------------------")
-        print(f"Program took {time_s} {unit} to send.")
-        print(f"Message sent at {round((size/time_to_send), 3)} bytes/s.")
+        print("-------------------------\nMensagem enviada.\n-------------------------")
+        print(f"Programa levou {time_s} {unit} para enviar.")
+        print(f"Mensagem enviada a {round((size/time_to_send), 3)} bytes/s.")
         
         rxBufferClient, nRxClient = com1.getData(4)
         answer=int.from_bytes(rxBufferClient, 'big')
         
         if size==answer:
-            print("Communication successful. There was no loss of data.")
+            print("Comunicação bem-sucedida. Não houve perda de dados.")
         else:
-            print(f"There was a communication error. There were {size - answer} bytes lost.")
+            print(f"Ocorreu um erro de comunicação. {size - answer} bytes foram perdidos.")
             
         com1.disable()
         

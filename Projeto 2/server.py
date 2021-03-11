@@ -33,9 +33,9 @@ def main():
         with open(imageW, 'wb') as f:
             f.write(rxBuffer)
            
-        print("-------------------------\nMessage received.\n-------------------------")
-        print(f"Program took {time_r} {unit} to receive.")
-        print(f"Message received at {round((img_size/time_to_receive), 3)} bytes/s.")
+        print("-------------------------\nMensagem recebida.\n-------------------------")
+        print(f"Programa levou {time_r} {unit} para receber.")
+        print(f"Mensagem recebida a {round((img_size/time_to_receive), 3)} bytes/s.")
         
         com2.disable()
         
