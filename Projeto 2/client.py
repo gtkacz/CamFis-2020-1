@@ -9,7 +9,7 @@ header_size=4
 
 def process_time(time, unit):
     units={"ms":1e3, "μs": 1e6, "ns":1e9}
-    return round(units.get(unit)*time, unit, 3)
+    return round(units.get(unit)*time, 3), unit
 
 def main():
     try:
