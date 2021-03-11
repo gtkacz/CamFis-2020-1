@@ -15,7 +15,7 @@ header_size=4
 
 def process_time(time, unit):
     units={"ms":1e3, "μs": 1e6, "ns":1e9}
-    return units.get(unit)*time, unit
+    return round(units.get(unit)*time, unit, 3)
 
 def main():
     try:
@@ -30,7 +30,7 @@ def main():
             
         size=len(txBuffer)
         header=size.to_bytes(header_size, 'big')
-        print("Montou o header")
+        print(f"Montou o header:/n {header}")
         
         start_time = time()
         
@@ -51,7 +51,7 @@ def main():
         if size==answer:
             print("Communication successful. There was no loss of data.")
         else:
-            print(f"There was a communication error. There were {size-answer} bytes lost.")
+            print(f"There was a communication error. There were {size - answer} bytes lost.")
             
         com1.disable()
         

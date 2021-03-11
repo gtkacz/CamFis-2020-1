@@ -36,7 +36,7 @@ def main():
            
         print("-------------------------\nMessage received.\n-------------------------")
         print(f"Program took {time_r} {unit} to receive.")
-        print(f"Message received at {size/time_to_receive} bytes/s.")
+        print(f"Message received at {img_size_b/time_to_receive} bytes/s.")
         
         com2.disable()
         
