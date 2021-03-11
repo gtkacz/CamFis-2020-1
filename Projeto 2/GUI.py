@@ -10,4 +10,6 @@ def timeWindow(typeOfTransmission, time):
     Tk().withdraw()
     messagebox.showinfo(title=f"Time it took to {typeOfTransmission} image", message=f"Message took {time} to {typeOfTransmission}.")
     
-#timeWindow('send', '0.05ms')
+class App():
+    def __init__(self):
+        pass

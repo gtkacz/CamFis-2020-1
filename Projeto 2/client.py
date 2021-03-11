@@ -1,15 +1,9 @@
 from enlace import *
 from time import time
-#from datetime import datetime
 import numpy as np
-from tkinter import Tk, messagebox
-from tkinter.filedialog import askopenfilename
-import os
+from GUI import *
 
-#imageR = imageInput()
-Tk().withdraw()
-imageR=askopenfilename(initialdir=os.getcwd(), title="Select the image you wish to send", filetypes=[("Image Files", ".png"), ("Image Files", ".jpg"), ("Image Files", ".jpeg")])
-#imageR='./img/transmission.png'
+imageR = imageInput()
     
 header_size=4
 
