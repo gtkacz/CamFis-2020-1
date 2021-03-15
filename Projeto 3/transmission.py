@@ -44,6 +44,7 @@ class Transmission():
         pass
     
     def __receive_head__(self, datagram):
+        self.PAYLOAD_SIZE=None
         pass
     
     def __receive_packages__(self, datagram):
@@ -56,7 +57,7 @@ class Transmission():
         pass
     
     def send_handshake(self):
-        self.HANDSHAKE_VALUE=(0).to_bytes(4, 'big')
+        self.HANDSHAKE_VALUE=(0).to_bytes(1, 'big')
         pass
     
     def receive_handshake(self):
