@@ -15,6 +15,8 @@ class Transmission():
         self.OVERHEAD=(self.HEAD_SIZE + self.MAX_PAYLOAD_SIZE + self.EOP_SIZE)/self.MAX_PAYLOAD_SIZE
     
     def __build_head__(self, transmission_type, filepath=None):
+        self.head_transmissiontype_len=1
+        self.head_file_len=self.HEAD_SIZE-self.head_transmissiontype_len
         self.transmission_types = {
             'HANDSHAKE':1,
             'NORMAL':2,
@@ -24,13 +26,19 @@ class Transmission():
         }
         
         self.transmission_type = self.transmission_types.get(transmission_type.upper())
-        if self.transmission_type==2:
+        if self.transmission_type==1:
+            pass
+        
+        elif self.transmission_type==2:
             if filepath==None:
                 raise TypeError("Can't send NORMAL transmission without specifying file path.")
             else:
                 filepath=Path(filepath)
                 with open(filepath, 'rb') as file:
                     self.txBuffer=file
+                self.size=len(self.txBuffer)
+                self.head_file_size=self.size.to_bytes(self.head_file_len, 'big')
+                self.n_of_datagrams=self.head_file_size/self.MAX_PAYLOAD_SIZE
     
     def __EOP__(self):
         self.EOP_VALUE=2001
