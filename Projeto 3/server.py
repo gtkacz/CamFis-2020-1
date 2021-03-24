@@ -2,6 +2,7 @@ from enlace import *
 from time import time
 import numpy as np
 import os
+from timeit import timeit
 
 imageW = "./img/transmission_receive.png"
 

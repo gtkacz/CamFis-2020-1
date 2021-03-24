@@ -2,6 +2,7 @@ from enlace import *
 from time import time
 import numpy as np
 from GUI import *
+from timeit import timeit
 
 imageR = imageInput()
     
