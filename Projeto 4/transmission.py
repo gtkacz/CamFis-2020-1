@@ -1,3 +1,5 @@
+__author__ = "Gabriel Mitelman Tkacz"
+
 from enlace import *
 from numpy import asarray
 from pathlib import Path
@@ -6,9 +8,9 @@ import logging
 
 @dataclass
 class Datagram():
-    head: bytes = None
-    payload: bytes = None
-    eop: bytes = None
+    head: bytes
+    payload: bytes
+    eop: bytes
 
 class Client():
     def __init__(self, door):
@@ -17,9 +19,9 @@ class Client():
         self.MAX_PAYLOAD_SIZE=114
         self.com=enlace(door)
         self.com.enable()
-        print(f'Abriu a porta {door}')
+        #print(f'Abriu a porta {door}')
         self.OVERHEAD=(self.HEAD_SIZE + self.MAX_PAYLOAD_SIZE + self.EOP_SIZE)/self.MAX_PAYLOAD_SIZE
-        print(f'Overhead de {self.OVERHEAD}')
+        #print(f'Overhead de {self.OVERHEAD}')
     
     def __build_head__(self, transmission_type, filepath=None):
         self.head_transmissiontype_len=1
@@ -52,7 +54,7 @@ class Client():
         self.EOP=self.EOP_VALUE.to_bytes(self.EOP_SIZE, 'big')
     
     def __build_payloads__(self, data, n):
-        self.payloads=[0*self.]
+        self.payloads=[0]*n
         pass
     
     def __build_packages__(self, data):

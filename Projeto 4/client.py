@@ -1,3 +1,5 @@
+__author__ = "Gabriel Mitelman Tkacz"
+
 from time import time
 from GUI import *
 from transmission import Client
@@ -12,11 +14,13 @@ def process_time(time, unit):
 def main():
     try:
         logging.basicConfig(filename="client.log", level=logging.INFO)
-        client = Client('COM5')
+        door = 'COM5'
+        client = Client(door)
+        logging.info(f'Enabled client on door {door}')
         
-    except Exception as error:
-        print(error)
-        com1.disable()
+    except Exception as e:
+        logging.error(e)
+        client.end_transmission()
         
 if __name__ == "__main__":
     main()
