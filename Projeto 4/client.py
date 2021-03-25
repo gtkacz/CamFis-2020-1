@@ -1,6 +1,7 @@
 from time import time
 from GUI import *
 from transmission import Client
+import logging
 
 imageR = imageInput()
 
@@ -10,6 +11,7 @@ def process_time(time, unit):
 
 def main():
     try:
+        logging.basicConfig(filename="client.log", level=logging.INFO)
         client = Client('COM5')
         
     except Exception as error:
