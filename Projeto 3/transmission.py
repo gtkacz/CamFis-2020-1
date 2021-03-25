@@ -2,6 +2,11 @@ from enlace import *
 from numpy import asarray
 from pathlib import Path
 
+@dataclass
+class Datagram():
+    def __init__(self):
+        pass
+
 class Client():
     def __init__(self, door):
         self.HEAD_SIZE=10
@@ -50,11 +55,11 @@ class Client():
     def __build_packages__(self, data):
         self.packages=[]
         
-        if data!=self.HANDSHAKE_VALUE:
-            self.payload=self.__build_payload__(data)
+        self.payload=self.__build_payload__(data)
             
         self.head=self.__build_head__(data)
         
+        self.__EOP__()
         
         self.package=self.head+self.payload+self.EOP
     
