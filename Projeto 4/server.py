@@ -10,7 +10,7 @@ def process_time(time, unit):
 
 def main():
     try:
-        pass
+        client = Server('COM6')
         
     except Exception as error:
         print(error)

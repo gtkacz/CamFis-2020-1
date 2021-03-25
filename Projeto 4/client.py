@@ -10,12 +10,11 @@ def process_time(time, unit):
 
 def main():
     try:
-        pass
+        client = Client('COM5')
         
     except Exception as error:
         print(error)
         com1.disable()
         
-
 if __name__ == "__main__":
     main()
