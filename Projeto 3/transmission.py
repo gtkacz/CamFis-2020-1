@@ -1,11 +1,9 @@
 from enlace import *
-from time import time
 from numpy import asarray
-from GUI import *
 from pathlib import Path
 
-class Transmission():
-    def __init__(self, door, clientserver):
+class Client():
+    def __init__(self, door):
         self.HEAD_SIZE=10
         self.EOP_SIZE=4
         self.MAX_PAYLOAD_SIZE=114
@@ -13,9 +11,7 @@ class Transmission():
         self.com.enable()
         print(f'Abriu a porta {door}')
         self.OVERHEAD=(self.HEAD_SIZE + self.MAX_PAYLOAD_SIZE + self.EOP_SIZE)/self.MAX_PAYLOAD_SIZE
-        self.clientserver=(clientserver).upper()
-        if self.clientserver != 'CLIENT' and self.clientserver != 'SERVER':
-            raise ValueError('Required argument client/server is invalid.')
+        print(f'Overhead de {self.OVERHEAD}')
     
     def __build_head__(self, transmission_type, filepath=None):
         self.head_transmissiontype_len=1
@@ -34,7 +30,7 @@ class Transmission():
         
         elif self.transmission_type==2:
             if filepath==None:
-                raise TypeError("Can't send NORMAL transmission without specifying file path.")
+                raise ValueError("Can't send NORMAL transmission without specifying file path.")
             else:
                 filepath=Path(filepath)
                 with open(filepath, 'rb') as file:
@@ -44,7 +40,7 @@ class Transmission():
                 self.n_of_datagrams=self.head_file_size/self.MAX_PAYLOAD_SIZE
     
     def __EOP__(self):
-        self.EOP_VALUE=0
+        self.EOP_VALUE=2001
         self.EOP=self.EOP_VALUE.to_bytes(self.EOP_SIZE, 'big')
     
     def __build_payloads__(self, data, n):
@@ -67,28 +63,17 @@ class Transmission():
             self.com.sendData(self.packages[i])
         pass
     
-    def __receive_head__(self, datagram):
-        self.PAYLOAD_SIZE=None
-        pass
-    
-    def __receive_packages__(self, datagram):
-        pass
-    
-    def __receive_EOP__(self, datagram):
-        pass
-    
-    def receive_all(self, data):
-        pass
-    
-    def send_handshake(self):
-        self.HANDSHAKE_VALUE=(0).to_bytes(1, 'big')
-        pass
-    
-    def receive_handshake(self):
-        self.HANDSHAKE_RECEIVE_VALUE=1972
-    
-    def acknowledge(self):
-        pass
-    
+    def end_transmission(self):
+        self.com.disable()
+        
+class Server():
+    def __init__(self, door):
+        self.HEAD_SIZE=10
+        self.EOP_SIZE=4
+        self.MAX_PAYLOAD_SIZE=114
+        self.com=enlace(door)
+        self.com.enable()
+        print(f'Abriu a porta {door}')
+        
     def end_transmission(self):
         self.com.disable()
