@@ -63,7 +63,7 @@ class Client():
         
         self.__EOP__()
         
-        self.package=self.head+self.payload+self.EOP
+        self.package=Datagram(self.head, self.payload, self.EOP)
     
     def send_all(self):
         for i in range(len(self.packages)):
