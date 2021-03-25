@@ -2,6 +2,7 @@ from enlace import *
 from numpy import asarray
 from pathlib import Path
 from dataclasses import dataclass
+import logging
 
 @dataclass
 class Datagram():
