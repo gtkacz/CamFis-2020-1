@@ -1,11 +1,13 @@
 from enlace import *
 from numpy import asarray
 from pathlib import Path
+from dataclasses import dataclass
 
 @dataclass
 class Datagram():
-    def __init__(self):
-        pass
+    head: bytes = None
+    payload: bytes = None
+    eop: bytes = None
 
 class Client():
     def __init__(self, door):
