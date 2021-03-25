@@ -5,22 +5,25 @@ from GUI import *
 from pathlib import Path
 
 class Transmission():
-    def __init__(self, door):
+    def __init__(self, door, clientserver):
         self.HEAD_SIZE=10
         self.EOP_SIZE=4
-        self.MAX_PAYLOAD_SIZE=128
+        self.MAX_PAYLOAD_SIZE=114
         self.com=enlace(door)
         self.com.enable()
         print(f'Abriu a porta {door}')
         self.OVERHEAD=(self.HEAD_SIZE + self.MAX_PAYLOAD_SIZE + self.EOP_SIZE)/self.MAX_PAYLOAD_SIZE
+        self.clientserver=(clientserver).upper()
+        if self.clientserver != 'CLIENT' and self.clientserver != 'SERVER':
+            raise ValueError('Required argument client/server is invalid.')
     
     def __build_head__(self, transmission_type, filepath=None):
         self.head_transmissiontype_len=1
         self.head_file_len=self.HEAD_SIZE-self.head_transmissiontype_len
         self.transmission_types = {
             'HANDSHAKE':1,
-            'NORMAL':2,
-            'LAST':3,
+            'HANDSHAKE_SERVER':2,
+            'SEND PACKAGE':3,
             'SUCCESS':4,
             'FAILURE':5,
         }
@@ -41,7 +44,7 @@ class Transmission():
                 self.n_of_datagrams=self.head_file_size/self.MAX_PAYLOAD_SIZE
     
     def __EOP__(self):
-        self.EOP_VALUE=2001
+        self.EOP_VALUE=0
         self.EOP=self.EOP_VALUE.to_bytes(self.EOP_SIZE, 'big')
     
     def __build_payloads__(self, data, n):
