@@ -3,7 +3,7 @@ __author__ = "Gabriel Mitelman Tkacz"
 from time import time
 from GUI import *
 from transmission import Client
-import logging
+import logging, traceback
 
 imageR = imageInput()
 
@@ -18,7 +18,8 @@ def main():
         client = Client(door)
         logging.info(f'Enabled client on door {door}')
         
-    except Exception as e:
+    except:
+        e=traceback.format_exc()
         logging.error(e)
         client.end_transmission()
         
