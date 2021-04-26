@@ -1,0 +1,12 @@
+[21:53:48] {d:\Insper\4º semestre\CamFis\Projeto 4\client.py:15} WARNING - New program instance.
+[21:53:48] {d:\Insper\4º semestre\CamFis\Projeto 4\client.py:18} INFO - Enabled client on door COM5
+[21:53:54] {d:\Insper\4º semestre\CamFis\Projeto 4\client.py:22} INFO - Loaded image from path: D:/Insper/4º semestre/CamFis/Projeto 4/img/transmission.png
+[21:53:54] {d:\Insper\4º semestre\CamFis\Projeto 4\client.py:23} INFO - <built-in function time> - Overhead of 1.1228070175438596
+[11:09:09] {d:\Insper\4º semestre\CamFis\Projeto 4\client.py:15} WARNING - New program instance.
+[11:09:09] {d:\Insper\4º semestre\CamFis\Projeto 4\client.py:18} INFO - Enabled client on door COM5.
+[11:09:10] {d:\Insper\4º semestre\CamFis\Projeto 4\client.py:19} INFO - Overhead of 1.1228070175438596.
+[11:09:13] {d:\Insper\4º semestre\CamFis\Projeto 4\client.py:22} INFO - Loaded image from path: D:/Insper/4º semestre/CamFis/Projeto 4/img/transmission.png
+[14:00:07] {d:\Insper\4º semestre\CamFis\Projeto 4\client.py:15} WARNING - New program instance.
+[14:00:07] {d:\Insper\4º semestre\CamFis\Projeto 4\client.py:18} INFO - Enabled client on door COM5.
+[14:00:07] {d:\Insper\4º semestre\CamFis\Projeto 4\client.py:19} INFO - Overhead of 1.1228070175438596.
+[14:00:10] {d:\Insper\4º semestre\CamFis\Projeto 4\client.py:22} INFO - Loaded image from path: D:/Insper/4º semestre/CamFis/Projeto 4/img/transmission.png
