@@ -1,11 +1,10 @@
+from scipy.io import wavfile
 from tkinter import Tk, ttk
 from funcoes_LPF import *
 from tkinter.filedialog import askopenfilename
-from scipy.io import wavfile
-import os
 import scipy.signal as sps
 import sounddevice as sd
-import matplotlib.pyplot as plt
+import os
 
 def loadsound():
     window=Tk()
@@ -31,30 +30,20 @@ def loadsound():
     Column1.grid(row=0, column=0, padx=50, pady=25)
 
     window.mainloop()
-    
-def main():
-    global som
-    
+
+def main(carrier_freq):
     sd.default.channels = 1
     sd.default.samplerate = fs
     
     loadsound()
-    som=normalize_sound(som)
     
-    sd.playrec(som)
-    sd.wait()
+    demodulado=carrier_freq*som
+    demodulado_filtrado=LPF(demodulado, 4000, fs)
     
-    som_filtrado=LPF(som, 4000, fs)
-    
-    sd.playrec(som_filtrado)
-    sd.wait()
-    
-    som_modulado=modulate_sound(som_filtrado)
-    
-    sd.play(som_modulado)
+    sd.playrec(demodulado_filtrado)
     sd.wait()
 
 if __name__ == '__main__':
     fs=44100
     som=None
-    main()
+    main(generateSin(20000, 1, 1, fs)[1])
