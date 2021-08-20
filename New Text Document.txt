@@ -1,0 +1,4 @@
+Resolução = R/((2^n)-1)
+
+R = Range da análise. Tipo, se for de +1 até -1V, então o range é 2
+n = número de bits da amostra, no caso 10
